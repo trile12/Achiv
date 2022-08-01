@@ -1,0 +1,11 @@
+﻿<Grid x:Class="Achievers.ControlCustom.ImageLoading"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Achievers.ControlCustom"
+             xmlns:root="clr-namespace:Achievers"
+             Unloaded="ImageLoading_Unloaded">
+    <root:LoadingSpinner Diameter="30" Color="Blue" IsLoading="True" Thickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <Image Stretch="{Binding Stretch, RelativeSource={RelativeSource AncestorType=local:ImageLoading}}" RenderOptions.BitmapScalingMode="HighQuality" />
+</Grid>

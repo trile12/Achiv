@@ -1,0 +1,77 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Shared.WordMatch.WordPart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Achievers.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Shared.WordMatch"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="userControl"
+    Width="195"
+    Height="140"
+    d:DesignHeight="140"
+    d:DesignWidth="195"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:VisibilityItemEmptyConverter x:Key="visibilityItemEmptyConverter" />
+        <DropShadowEffect
+            x:Key="dropShadow"
+            BlurRadius="20"
+            Direction="700"
+            Opacity=".2"
+            ShadowDepth="1"
+            Color="#000000" />
+    </UserControl.Resources>
+    <Border CornerRadius="8" Effect="{StaticResource dropShadow}">
+        <Grid>
+            <Image Source="{Binding ElementName=userControl, Path=Images}" Stretch="Fill" />
+            <TextBlock
+                Margin="16,0,16,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="14"
+                FontWeight="Regular"
+                Foreground="#374352"
+                Text="{Binding ElementName=userControl, Path=Def}"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Visibility="{Binding ElementName=userControl, Path=Def, Converter={StaticResource visibilityItemEmptyConverter}}" />
+
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="Medium"
+                Foreground="#232D38"
+                Text="{Binding ElementName=userControl, Path=Title}"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Visibility="{Binding ElementName=userControl, Path=Title, Converter={StaticResource visibilityItemEmptyConverter}}" />
+            <Image Source="{Binding ElementName=userControl, Path=BookImage}" Stretch="Fill">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=userControl, Path=IsActive}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </Grid>
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=userControl, Path=IsActive}" Value="True">
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Setter Property="BorderBrush" Value="#E07031" />
+                        <Setter Property="Background" Value="#FCF4EE" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+    </Border>
+</UserControl>

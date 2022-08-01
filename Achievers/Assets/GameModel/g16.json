@@ -1,0 +1,105 @@
+{
+  "id": 16,
+  "name": "Review 4",
+  "image_url": "",
+  "activity_type": 6,
+  "grade_unit_id": 4,
+  "total_question": 10,
+  "min_progress": 70,
+  "deleted": 0,
+  "next_unit_review": null,
+  "instruction": "Guess the secret word by clicking the letters.",
+  "instruction_vi": "Chọn những chữ cái phù hợp để tìm ra từ bí mật.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "hurt",
+          "image": "/U3/hurt.jpg",
+          "hint": "to feel painful; to cause pain in a part of your body"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "red envelope",
+          "image": "/U3/red_envelope.jpg",
+          "hint": "a thin red paper cover in which you put lucky money"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "lift",
+          "image": "/U3/lift.jpg",
+          "hint": "to move something to a higher position"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "excited",
+          "image": "/U3/excited.jpg",
+          "hint": "happy and interested because something good has happened or will happen"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "explain",
+          "image": "/U3/explain.jpg",
+          "hint": "to tell somebody about something in a way that makes it easy to understand"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "live",
+          "image": "/U3/live.jpg",
+          "hint": "If a radio or TV program is live, you see or hear it at the same time as it happens."
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "event",
+          "image": "/U3/event.jpg",
+          "hint": "a thing that happens, especially something important"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "camping",
+          "image": "/U3/camping.jpg",
+          "hint": "staying in a tent on holiday"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "ankle",
+          "image": "/U3/ankle.jpg",
+          "hint": "the part of your leg where it joins your foot"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "carnival",
+          "image": "/U3/carnival.jpg",
+          "hint": "a public festival at which people play music, wear special clothes, and dance in the streets"
+        }
+      ]
+    }
+  ]
+}

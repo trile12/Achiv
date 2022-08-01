@@ -1,0 +1,76 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Game.MatchWord"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Achievers.Converters"
+    xmlns:custom="clr-namespace:Achievers.ControlCustom"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Game"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="clr-namespace:Achievers.Views.Shared"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+
+    <Grid
+        Width="1312"
+        Height="736"
+        Margin="0,20,0,0">
+        <Image Margin="-32,-16,-32,-48" Source="/Achievers;component/Assets/Images/bg-game.png" />
+        <shared:HorizalProgressBarQuestion
+            Margin="0,57,0,0"
+            VerticalAlignment="Top"
+            CurQuestion="{Binding CurIndex}"
+            EndColor="#E07031"
+            StartColor="#F2B28A"
+            TotalQuestion="{Binding TotalQuestion}" />
+        <Grid Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="0,80,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="20"
+                Foreground="#738498"
+                Text="{Binding Instruction}" />
+            <custom:BounceButton
+                Width="32"
+                Height="32"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                OnClick="QuitGame_Click">
+                <Image
+                    Width="19"
+                    Height="19"
+                    Source="/Achievers;component/Assets/Images/ic-close.png" />
+            </custom:BounceButton>
+            <shared:CircleProgressBarTimer
+                x:Name="timer"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                OnTimeOver="OnTimeOver"
+                Time="60"
+                WarnTime="10" />
+            <Grid Grid.Row="1" Margin="184,30,184,0">
+                <Image
+                    x:Name="img_star"
+                    Width="200"
+                    Height="200"
+                    Margin="30,0,0,0"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="1"
+                    Source="/Achievers;component/Assets/Images/up-star.png"
+                    Stretch="Uniform"
+                    Visibility="Collapsed" />
+                <Canvas
+                    x:Name="mainGame"
+                    Margin="16,29.5,16,29.5"
+                    Background="Transparent"
+                    MouseLeftButtonUp="OnMouseUp" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

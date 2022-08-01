@@ -1,0 +1,105 @@
+{
+  "id": 28,
+  "name": "Review 4",
+  "image_url": "",
+  "activity_type": 6,
+  "grade_unit_id": 7,
+  "total_question": 10,
+  "min_progress": 70,
+  "deleted": 0,
+  "next_unit_review": null,
+  "instruction": "Guess the secret word by clicking the letters.",
+  "instruction_vi": "Chọn những chữ cái phù hợp để tìm ra từ bí mật.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "vase",
+          "image": "/U6/vase.jpg",
+          "hint": "a pot that you put cut flowers in"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "funeral",
+          "image": "/U6/funeral.jpg",
+          "hint": "a ceremony people hold when someone dies"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "journey",
+          "image": "/U6/journey.jpg",
+          "hint": "a long trip from one place to another"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "pioneer",
+          "image": "/U6/pioneer.jpg",
+          "hint": "one of the first people to go to an area to live and work there"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "helmet",
+          "image": "/U6/helmet.jpg",
+          "hint": "a strong hard hat that covers and protects the head"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "historian",
+          "image": "/U6/historian.jpg",
+          "hint": "a person who studies or writes about history"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "plate",
+          "image": "/U6/plate.jpg",
+          "hint": "a round dish that you put food on"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "wagon",
+          "image": "/U6/wagon.jpg",
+          "hint": "a type of transport with four wheels that a horse pulls"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "cushion",
+          "image": "/U6/cushion.jpg",
+          "hint": "something that people put on a chair or a sofa to make it more comfortable"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "horn",
+          "image": "/U6/horn.jpg",
+          "hint": "one of the hard pointed things that grows on the heads of some animals, such as sheep and cows"
+        }
+      ]
+    }
+  ]
+}

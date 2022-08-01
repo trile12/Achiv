@@ -1,0 +1,60 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Shared.ButtonCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Achievers.Converters"
+    xmlns:custom="clr-namespace:Achievers.ControlCustom"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Shared"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="userControl"
+    d:DesignHeight="56"
+    d:DesignWidth="200"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:HideEmtyStringConvert x:Key="hideEmtyStringConvert" />
+        <converters:ColorToStringCoverter x:Key="colorToStringCoverter" />
+        <DropShadowEffect
+            x:Key="dropShadow"
+            BlurRadius="20"
+            Direction="700"
+            Opacity=".3"
+            ShadowDepth="1"
+            Color="Black" />
+        <Style x:Key="box" TargetType="Border">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="{Binding ElementName=userControl, Path=StartColor, Converter={StaticResource colorToStringCoverter}}" />
+                        <GradientStop Offset="1" Color="{Binding ElementName=userControl, Path=EndColor, Converter={StaticResource colorToStringCoverter}}" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <custom:BounceButton
+        x:Name="bg"
+        CornerRadius="20"
+        DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:ButtonCard}}"
+        OnClick="BounceButton_OnClick"
+        Style="{StaticResource box}">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Image
+                Width="{Binding ElementName=TxtBlock, Path=ActualHeight}"
+                Margin="0,0,7,0"
+                VerticalAlignment="Center"
+                Source="{Binding ElementName=userControl, Path=ImageSource}"
+                Stretch="Uniform"
+                Visibility="{Binding ElementName=userControl, Path=ImageSource, Converter={StaticResource hideEmtyStringConvert}}" />
+            <TextBlock
+                x:Name="TxtBlock"
+                FontSize="16"
+                FontWeight="Medium"
+                Foreground="{Binding ElementName=userControl, Path=ColorTitle, Converter={StaticResource colorToStringCoverter}}"
+                Text="{Binding ElementName=userControl, Path=Title}" />
+        </StackPanel>
+    </custom:BounceButton>
+</UserControl>

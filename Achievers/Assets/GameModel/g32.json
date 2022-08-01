@@ -1,0 +1,44 @@
+{
+  "id": 32,
+  "name": "Review 4",
+  "image_url": "",
+  "activity_type": 7,
+  "grade_unit_id": 8,
+  "total_question": 1,
+  "min_progress": 70,
+  "deleted": 0,
+  "next_unit_review": null,
+  "instruction": "Click and drag to find the hidden words",
+  "instruction_vi": "Chạm và kéo để chọn từ cần tìm.",
+  "questions": [
+    {
+      "grid_str": "WSHELTERYRASURVIVERETURHRRTSESEIEQJUKPCCRVPRJCMAOUPRTXHKVDVERTIDWSBEECOLLHEAOVRROTERTCMOSEFMKAGKOIVW",
+      "answers": [
+        {
+          "text": "waterproof"
+        },
+        {
+          "text": "rucksack"
+        },
+        {
+          "text": "shelter"
+        },
+        {
+          "text": "survive"
+        },
+        {
+          "text": "reptile"
+        },
+        {
+          "text": "rescuecrew"
+        },
+        {
+          "text": "recover"
+        },
+        {
+          "text": "spade"
+        }
+      ]
+    }
+  ]
+}

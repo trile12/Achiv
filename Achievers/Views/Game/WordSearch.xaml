@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Game.WordSearch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:custom="clr-namespace:Achievers.ControlCustom"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Game"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="clr-namespace:Achievers.Views.Shared"
+    xmlns:viewModel="clr-namespace:Achievers.ViewModels.Game"
+    d:DataContext="{d:DesignInstance viewModel:WordSearchViewModel}"
+    d:DesignHeight="736"
+    d:DesignWidth="1312"
+    Loaded="OnLoaded"
+    mc:Ignorable="d">
+    <Grid
+        Width="1312"
+        Height="736"
+        Margin="0,20,0,0">
+        <Image Margin="-32,-16,-32,-48" Source="/Achievers;component/Assets/Images/bg-game.png" />
+        <Grid Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="20"
+                Foreground="#738498"
+                Text="{Binding Instruction}" />
+            <custom:BounceButton
+                Width="32"
+                Height="32"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                OnClick="QuitGame_Click">
+                <Image
+                    Width="19"
+                    Height="19"
+                    Source="/Achievers;component/Assets/Images/ic-close.png" />
+            </custom:BounceButton>
+            <!--<shared:CircleProgressBarTimer Grid.RowSpan="2" Time="60" WarnTime="10" HorizontalAlignment="Left" VerticalAlignment="Top" OnTimeOver="OnTimeOver" />-->
+            <Grid Grid.Row="1" Margin="184,57,184,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Width="532" Height="559">
+                    <Image Margin="-4,-2,-4,-4.5" Source="/Achievers;component/Assets/Images/bg-word-search.png" />
+                    <Canvas
+                        x:Name="mainGame"
+                        Margin="16,29.5,16,29.5"
+                        Background="Transparent"
+                        MouseLeftButtonDown="OnMouseDown"
+                        MouseLeftButtonUp="OnMouseUp"
+                        MouseMove="OnMouseMove" />
+                </Grid>
+                <ItemsControl
+                    x:Name="icList"
+                    Grid.Column="1"
+                    Margin="136,0,0,0"
+                    VerticalAlignment="Center">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,8"
+                                Padding="10,4"
+                                HorizontalAlignment="Left"
+                                Background="#F2FAF7"
+                                BorderBrush="#DCF5EC"
+                                BorderThickness="1"
+                                CornerRadius="8">
+                                <TextBlock
+                                    FontSize="20"
+                                    FontWeight="Normal"
+                                    Text="{Binding Text}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#44B88F" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                                                    <Setter Property="Foreground" Value="#9944B88F" />
+                                                    <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,189 @@
+﻿<UserControl x:Class="Achievers.Views.Shared.CustomSearchComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Achievers.Views.Shared" xmlns:converters="clr-namespace:Achievers.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DropShadowEffect x:Key="dropShadow" ShadowDepth="1" Color="#C5D2E0" Opacity="1" BlurRadius="10" Direction="700" />
+        <DropShadowEffect x:Key="defaultShadow" ShadowDepth="2" Color="#738498" Opacity="0.15" BlurRadius="4" Direction="-90" />
+        <Style x:Key="textTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#4B4A5C" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="textPronun" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Regular" />
+            <Setter Property="Foreground" Value="#626B85" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="itemBg" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListViewItem}}" Value="True">
+                    <Setter Property="Background" Value="#D4E9FF" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <converters:HideBooleanConverter x:Key="hideBooleanConverter" />
+        <converters:HiddenUnitConverter x:Key="hiddenUnitConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--Search Box-->
+        <Border DockPanel.Dock="Top" Height="52"  Width="276"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                CornerRadius="12" Margin="0 0 0 8"
+                Effect="{StaticResource defaultShadow}"
+                Background="White" BorderThickness="0">
+            <DockPanel>
+                <Image DockPanel.Dock="Left" Margin="10" Width="21" Height="21" Source="/Achievers;component/Assets/Images/ic-search.png" />
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBox x:Name="textSearch"  TextChanged="textSearch_TextChanged"
+                                     BorderThickness="0" Background="Transparent" HorizontalAlignment="Stretch"
+                                     VerticalContentAlignment="Center"
+                                     FontSize="16" FontWeight="Normal" Foreground="#4B4A5C" />
+                    <TextBlock Text="Search for words" Margin="2 1 0 0"
+                                       IsHitTestVisible="False" FontSize="16"
+                                       FontWeight="Normal" Foreground="#738498" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text.IsEmpty, ElementName=textSearch}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Image Margin="0,0,12,0" HorizontalAlignment="Right" Width="24" Height="24" Source="/Achievers;component/Assets/Images/search-cancel.png" MouseLeftButtonDown="ClearSearchClicked" Cursor="Hand">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text.IsEmpty, ElementName=textSearch}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Grid>
+            </DockPanel>
+        </Border>
+
+        <!--Search Results-->
+        <Grid Grid.Row="1" Background="Transparent"  Height="190" Width="276">
+            <Border x:Name="listBoxClip" Background="white" CornerRadius="16" Padding="2,2,2,2" Visibility="Collapsed" />
+            <Border x:Name="listbox" CornerRadius="16" Background="Transparent" Visibility="Collapsed">
+                <Border.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=listBoxClip}" />
+                </Border.OpacityMask>
+                <Grid>
+                    <ListView x:Name="Lb" Background="Transparent" HorizontalAlignment="Stretch"
+                             Width="{Binding ElementName=bd,Path=ActualWidth}"
+                             SelectionChanged="Lb_SelectionChanged"
+                             ItemsSource="{Binding LstWord}"
+                             BorderThickness="0"
+                             Padding="-2,-2,-2,-2"
+                             Margin="-1,-1,-2,0"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                        <ListView.Resources>
+
+                            <!--<Style TargetType="ListBoxItem">
+                                <Style.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                                </Style.Resources>
+                            </Style>
+                            <Style TargetType="ScrollBar">
+                                <Setter Property="Margin" Value="-20,-2,0,-2" />
+                            </Style>-->
+                            <ResourceDictionary Source="/Achievers;component/Themes/ListViewCustom_v3.xaml" />
+                        </ListView.Resources>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="SnapsToDevicePixels" Value="true" />
+                                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Margin" Value="0,0,0,-2" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter  Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Border x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsMouseOver" Value="True" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" TargetName="Bd" Value="#F8F8FE" /> <!--#F8F8FE-->
+                                                    <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                                </MultiTrigger>
+                                                <MultiTrigger>
+                                                    <MultiTrigger.Conditions>
+                                                        <Condition Property="IsMouseOver" Value="False" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="Background" TargetName="Bd" Value="white" />
+                                                    <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                                </MultiTrigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="260" Margin="16,0,0,0" Height="Auto">
+                                    <TextBlock LineHeight="24" Padding="0,9,0,0" TextWrapping="Wrap">
+                                        <Run Text="{Binding word_start}" FontWeight="Bold" Foreground="#374352" FontSize="16" /><Run Text="{Binding word_end}" FontWeight="Medium" Foreground="#738498" FontSize="16" />
+                                        <Run Text="{Binding word_form}" FontSize="12" Foreground="#738498" />
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding word_vi}" TextWrapping="Wrap" Foreground="#374352" FontSize="14" LineHeight="22" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel VerticalAlignment="Center">
+                        <Image Width="120" VerticalAlignment="Center"
+                   Source="/Achievers;component/Assets/Images/ic-notfound.png" />
+                        <TextBlock FontSize="16" Foreground="#738498"
+                           Text="No result found" HorizontalAlignment="Center" />
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=LstWord.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

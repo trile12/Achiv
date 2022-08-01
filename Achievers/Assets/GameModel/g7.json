@@ -1,0 +1,74 @@
+{
+  "id": 7,
+  "name": "Review 3",
+  "image_url": "",
+  "activity_type": 3,
+  "grade_unit_id": 2,
+  "total_question": 6,
+  "min_progress": 0,
+  "deleted": 0,
+  "next_unit_review": {
+    "id": 8,
+    "name": "Review 4"
+  },
+  "instruction": "Listen to the words and repeat.",
+  "instruction_vi": "Nghe và đọc theo.",
+  "sub_instruction": "Listen and choose the correct photo.",
+  "sub_instruction_vi": "Nghe và chọn ảnh tương ứng.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "vinyl",
+          "image": "/U1/vinyl.jpg",
+          "audio": "/audio/U1/vinyl.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "modern",
+          "image": "/U1/modern.jpg",
+          "audio": "/audio/U1/modern.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "comedy",
+          "image": "/U1/comedy.jpg",
+          "audio": "/audio/U1/comedy.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "site",
+          "image": "/U1/site.jpg",
+          "audio": "/audio/U1/site.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "prefer",
+          "image": "/U1/prefer.jpg",
+          "audio": "/audio/U1/prefer.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "DJ (disc jockey)",
+          "image": "/U1/DJ.jpg",
+          "audio": "/audio/U1/disc_jockey.wav"
+        }
+      ]
+    }
+  ]
+}

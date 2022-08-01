@@ -1,0 +1,105 @@
+{
+  "id": 40,
+  "name": "Review 4",
+  "image_url": "",
+  "activity_type": 6,
+  "grade_unit_id": 10,
+  "total_question": 10,
+  "min_progress": 70,
+  "deleted": 0,
+  "next_unit_review": null,
+  "instruction": "Guess the secret word by clicking the letters.",
+  "instruction_vi": "Chọn những chữ cái phù hợp để tìm ra từ bí mật.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "request",
+          "image": "/U9/request.jpg",
+          "hint": "the action of asking for something in a polite way"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "rude",
+          "image": "/U9/rude.jpg",
+          "hint": "not polite; impolite"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "lend",
+          "image": "/U9/lend.jpg",
+          "hint": "If you lend something, you give it to someone for a short time."
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "switch off",
+          "image": "/U9/switch_off.jpg",
+          "hint": "to turn off a light, machine, etc., by pressing a button"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "secure",
+          "image": "/U9/secure.jpg",
+          "hint": "well locked or protected so that no one can go in"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "attachment",
+          "image": "/U9/attachment.jpg",
+          "hint": "a document that you send to somebody by email"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "post",
+          "image": "/U9/post.jpg",
+          "hint": "to put information or pictures on the internet"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "stream",
+          "image": "/U9/stream.jpg",
+          "hint": "to listen to sound or watch a video directly from the Internet without downloading and saving it first"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "up-to-date",
+          "image": "/U9/up_to_date.jpg",
+          "hint": "modern; having the latest information"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "memory stick",
+          "image": "/U9/memory_stick.jpg",
+          "hint": "a USB; a flash drive; a small thing in which you can store and move information from a computer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Shared.HorizalProgressBarQuestion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Shared"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="userControl"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <Border
+            x:Name="parent_border"
+            Width="700"
+            Height="6"
+            HorizontalAlignment="Center"
+            Background="#E7EFF8"
+            CornerRadius="3">
+            <Border
+                x:Name="progress_bar"
+                Width="0"
+                Height="6"
+                HorizontalAlignment="Left"
+                CornerRadius="3">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5,0.5" EndPoint="0.5,1">
+                        <GradientStop Offset="0" Color="{Binding ElementName=userControl, Path=StartColor}" />
+                        <GradientStop Offset="1" Color="{Binding ElementName=userControl, Path=EndColor}" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Border>
+        <TextBlock
+            Margin="16,0,0,0"
+            VerticalAlignment="Center"
+            FontSize="20"
+            FontWeight="Normal"
+            Foreground="#526375">
+            <Run Text="{Binding ElementName=userControl, Path=CurQuestion}" /><Run Text="/" /><Run Text="{Binding ElementName=userControl, Path=TotalQuestion}" />
+        </TextBlock>
+    </StackPanel>
+</UserControl>

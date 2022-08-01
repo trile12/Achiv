@@ -1,0 +1,74 @@
+{
+  "id": 31,
+  "name": "Review 3",
+  "image_url": "",
+  "activity_type": 3,
+  "grade_unit_id": 8,
+  "total_question": 6,
+  "min_progress": 0,
+  "deleted": 0,
+  "next_unit_review": {
+    "id": 32,
+    "name": "Review 4"
+  },
+  "instruction": "Listen to the words and repeat.",
+  "instruction_vi": "Nghe và đọc theo.",
+  "sub_instruction": "Listen and choose the correct photo.",
+  "sub_instruction_vi": "Nghe và chọn ảnh tương ứng.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "patient",
+          "image": "/U7/patient.jpg",
+          "audio": "/audio/U7/patient.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "first-aid kit",
+          "image": "/U7/first_aid_kit.jpg",
+          "audio": "/audio/U7/first-aid_kit.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "carpet",
+          "image": "/U7/carpet.jpg",
+          "audio": "/audio/U7/carpet.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "environment",
+          "image": "/U7/environment.jpg",
+          "audio": "/audio/U7/environment.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "inhospitable",
+          "image": "/U7/inhospitable.jpg",
+          "audio": "/audio/U7/inhospitable.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "lynx",
+          "image": "/U7/lynx.jpg",
+          "audio": "/audio/U7/lynx.wav"
+        }
+      ]
+    }
+  ]
+}

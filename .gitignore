@@ -1,0 +1,8 @@
+
+# Bin
+/Achievers/bin
+/Achievers/obj
+/.vs
+/Setup/Debug
+/Setup/Release
+*.log

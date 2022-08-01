@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Shared.DragEachWord.RightPart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Shared.DragEachWord"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="userControl"
+    Width="270"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <DropShadowEffect
+            x:Key="dropShadow"
+            BlurRadius="20"
+            Direction="700"
+            Opacity=".2"
+            ShadowDepth="1"
+            Color="#000000" />
+    </UserControl.Resources>
+    <Border Effect="{StaticResource dropShadow}">
+        <Grid>
+            <Image
+                Height="120"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Source="/Achievers;component/Assets/Images/rightpart.png"
+                Stretch="Fill" />
+            <StackPanel
+                Margin="69,0,0,6"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="Normal"
+                    Foreground="#526375"
+                    Text="{Binding ElementName=userControl, Path=Title}"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

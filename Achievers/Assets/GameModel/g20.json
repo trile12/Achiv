@@ -1,0 +1,44 @@
+{
+  "id": 20,
+  "name": "Review 4",
+  "image_url": "",
+  "activity_type": 7,
+  "grade_unit_id": 5,
+  "total_question": 1,
+  "min_progress": 70,
+  "deleted": 0,
+  "next_unit_review": null,
+  "instruction": "Click and drag to find the hidden words",
+  "instruction_vi": "Chạm và kéo để chọn từ cần tìm.",
+  "questions": [
+    {
+      "grid_str": "LXNARROWAZILHARBOURLGNYLUHPMRIHFCPWAAGAFTYGFZBLFZTHGLADIATOROSAERTCDRHURMOJAEKZCSZLGTTNFTPEVMUSEUMUC",
+      "answers": [
+        {
+          "text": "lighthouse"
+        },
+        {
+          "text": "gladiator"
+        },
+        {
+          "text": "harbour"
+        },
+        {
+          "text": "narrow"
+        },
+        {
+          "text": "habitat"
+        },
+        {
+          "text": "museum"
+        },
+        {
+          "text": "palace"
+        },
+        {
+          "text": "lift"
+        }
+      ]
+    }
+  ]
+}

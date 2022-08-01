@@ -1,0 +1,9 @@
+diff a/Achievers/Views/Shared/CustomWordCombobox.xaml b/Achievers/Views/Shared/CustomWordCombobox.xaml	(rejected hunks)
+@@ -131,7 +131,6 @@
+                                     <TextBlock Text="{Binding Unit}" Margin="8,2"
+                                FontWeight="Medium"
+                                FontSize="14"
+-                               Foreground="{Binding foreGround}"
+                                Foreground="{Binding ForeGround}"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                 </Border>

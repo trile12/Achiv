@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="Achievers.Views.GameResult.ListenAndSayResult"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:custom="clr-namespace:Achievers.ControlCustom"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.GameResult"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="487"
+    Height="485"
+    d:DesignHeight="485"
+    d:DesignWidth="487"
+    mc:Ignorable="d">
+    <ItemsControl
+        Width="360"
+        Margin="0,24,0,0"
+        ItemsSource="{Binding .}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid Margin="8,8">
+                    <custom:ImageLoading
+                        Width="164"
+                        Height="121"
+                        ImageUrl="{Binding ImageUrl, IsAsync=True}"
+                        Stretch="UniformToFill">
+                        <custom:ImageLoading.Clip>
+                            <RectangleGeometry
+                                RadiusX="12"
+                                RadiusY="12"
+                                Rect="0,0,164,121" />
+                        </custom:ImageLoading.Clip>
+                    </custom:ImageLoading>
+                    <Border
+                        Width="32"
+                        Height="32"
+                        Margin="0,0,8,8"
+                        Padding="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Background="White"
+                        CornerRadius="27">
+                        <Image>
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Achievers;component/Assets/Images/check-circle-green-1.png" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsCorrect}" Value="False">
+                                            <Setter Property="Source" Value="/Achievers;component/Assets/Images/cross-circle-red-1.png" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

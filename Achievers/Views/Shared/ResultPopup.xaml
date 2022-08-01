@@ -1,0 +1,480 @@
+﻿<Border x:Class="Achievers.Views.Shared.ResultPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Achievers.Views.Shared"
+             xmlns:custom="clr-namespace:Achievers.ControlCustom"
+             mc:Ignorable="d"
+             d:DesignHeight="640" d:DesignWidth="487" CornerRadius="24" Background="White">
+    <Border.Resources>
+        <DropShadowEffect x:Key="dropShadow" ShadowDepth="1"
+                          Color="#000000" Opacity=".2"
+                          BlurRadius="20" Direction="700" />
+    </Border.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border CornerRadius="24,24,0,0" Height="55" Background="#F6FAFE">
+            <Grid VerticalAlignment="Center">
+                <TextBlock Text="Result" Foreground="#232D38" FontWeight="Medium" Margin="24,0,0,0" FontSize="18" VerticalAlignment="Center" />
+                <custom:BounceButton Width="24" Height="24" Margin="0,0,24,0" Background="Transparent" OnClick="CloseGame_Click"
+                                 HorizontalAlignment="Right">
+                    <Image Source="/Achievers;component/Assets/Images/ic-close.png" Width="14" Height="14" />
+                </custom:BounceButton>
+            </Grid>
+        </Border>
+
+        <ContentControl Grid.Row="1" Name="resultContent" />
+
+        <!--<Grid Grid.Row="1">
+            <ListView BorderThickness="0" x:Name="lst2"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ItemsSource="{Binding WordResultModels}">
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding GameView}" Value="4">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </Style.Resources>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="SnapsToDevicePixels" Value="true" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,0,16,0" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter  Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="Transparent" />
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Border Margin="150,8,10,0" Background="White" Width="400"
+                                    CornerRadius="16" BorderThickness="1"
+                                    Effect="{StaticResource dropShadow}"
+                                    Opacity="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    --><!--Image--><!--
+                                    <Border CornerRadius="16,0,0,16" Height="100" Width="120">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="UniformToFill" ImageSource="{Binding image}" />
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Left" Margin="30,0,0,0"
+                                               VerticalAlignment="Center"
+                                               FontWeight="Medium" FontSize="16" Foreground="#3DA4BF">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding text}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DataContext.IsMyResult,RelativeSource={RelativeSource AncestorType=ListView}}" Value="false">
+                                                        <Setter Property="Text" Value="{Binding text_result}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                            <Image Stretch="Uniform" Grid.Column="1" Width="80" Height="80">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-check-false.png" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isCorrect}" Value="True">
+                                                <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-check-true.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding DataContext.IsMyResult,RelativeSource={RelativeSource AncestorType=ListView}}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>-->
+        <!--<Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding GameView}" Value="2">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <ListView BorderThickness="0" ItemsSource="{Binding QuestionMatchWords}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </Style.Resources>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="SnapsToDevicePixels" Value="true" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,0,16,0" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter  Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="Transparent" />
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=ListView},Path=ActualWidth}">
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock  Foreground="#738498"
+                                           FontSize="18" Margin="0,10,0,0"
+                                           FontWeight="Medium">
+                                    <Run Text="Question" />
+                                    <Run Text="{Binding number}" />
+                                </TextBlock>
+                                <Grid Grid.Row="1">
+                                    <ItemsControl Grid.Row="1" ItemsSource="{Binding questionAnwsers}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" Margin="0,4,8,4">
+                                                    <StackPanel.Resources>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background" Value="#FFFFFF" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding isCorrect}" Value="False">
+                                                                    <Setter Property="Background" Value="#FCF2F2" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Resources>
+                                                    <Border Width="140" Height="100" CornerRadius="8" Effect="{StaticResource dropShadow}">
+                                                        <TextBlock Text="{Binding Text}" FontSize="16" Foreground="#374352"
+                                                                       TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Border>
+                                                    <Border Width="280" Margin="4,0,0,0" Height="100" CornerRadius="8" Effect="{StaticResource dropShadow}">
+                                                        <TextBlock Text="{Binding Def}" FontSize="16" Foreground="#374352"
+                                                                       TextAlignment="Center" HorizontalAlignment="Center"
+                                                                       TextWrapping="Wrap"
+                                                                       VerticalAlignment="Center" />
+                                                    </Border>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding GameView}" Value="5">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <ListView BorderThickness="0"
+                      ItemsSource="{Binding QuestionSpellWord}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </Style.Resources>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="SnapsToDevicePixels" Value="true" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,0,16,0" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter  Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="Transparent" />
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Center" Width="600">
+                            <Border Margin="150,8,50,0"
+                                    CornerRadius="16" BorderThickness="1"
+                                    Effect="{StaticResource dropShadow}"
+                                    Opacity="1">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    --><!--Image--><!--
+                                    <Border CornerRadius="16,0,0,16" Height="100" Width="120">
+                                        <Border.Background>
+                                            <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Image}" />
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Left" Margin="15,0,0,0"
+                                               VerticalAlignment="Center"
+                                               FontSize="16" Text="{Binding CorrectText}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontWeight" Value="Medium" />
+                                                <Setter Property="Foreground" Value="#E07031" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding isCorrect}" Value="False">
+                                                        <Setter Property="Foreground" Value="#D44942" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isCorrect}" Value="False">
+                                                <Setter Property="Background" Value="#FCF2F2" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding GameView}" Value="3">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <ListView BorderThickness="0"
+                      ItemsSource="{Binding ListenAndSayQuestions}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        </Style.Resources>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="SnapsToDevicePixels" Value="true" />
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,0,16,0" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter  Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsMouseOver" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="Transparent" />
+                                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent" />
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="20,0,0,0">
+                            <Border CornerRadius="16" Height="200" Width="300">
+                                <Border.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Image}" />
+                                </Border.Background>
+                                <Grid>
+                                    <Border Margin="0 0 14 14" Width="54" Height="54" CornerRadius="27" Background="White" Padding="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Image Source="/Achievers;component/Assets/Images/check-circle-green-1.png" />
+                                    </Border>
+
+                                    <Border Margin="0 0 14 14" Width="54" Height="54" CornerRadius="27" Background="White" Padding="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCorrect}" Value="False">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <Image Margin="-15,-12,-12,-15" Stretch="Uniform" Source="/Achievers;component/Assets/Images/ic-fail.png" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>-->
+    </Grid>
+</Border>

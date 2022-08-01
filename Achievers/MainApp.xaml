@@ -1,0 +1,99 @@
+﻿<Grid x:Class="Achievers.MainApp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Achievers" xmlns:shared="clr-namespace:Achievers.Views.Shared" xmlns:tab="clr-namespace:Achievers.Views.Tab" xmlns:ease="clr-namespace:Achievers.EasingCustom"
+      mc:Ignorable="d" Loaded="OnLoaded" x:Name="MainGrid">
+    <Grid.Resources>
+        <Storyboard x:Key="SbImgKey" Completed="Storyboard_Completed">
+
+            <!--<DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.9" To="0.0" Duration="0:0:1" />-->
+        </Storyboard>
+    </Grid.Resources>
+    <!--Welcome Panel-->
+    <Grid Name="welcomepage" Panel.ZIndex="50" Background="White">
+        <!--<Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Visibility" Value="Visible" />
+                <Style.Triggers>
+                    <Trigger Property="Opacity" Value="0.9">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource SbImgKey}" />
+                        </Trigger.EnterActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>-->
+
+        <Image Source="/Assets/Images/bg-panel.png" Stretch="Fill" />
+        <StackPanel VerticalAlignment="Center">
+            <Grid>
+                <Image Source="/Assets/Images/logo-bg.png" Stretch="Uniform" HorizontalAlignment="Center" Width="500" Height="500" />
+                <Image Source="/Assets/Images/logo@2x.png" Stretch="Uniform" HorizontalAlignment="Center" Width="400" Height="400" />
+            </Grid>
+            <Border  VerticalAlignment="Bottom" Margin="0,15,0,0"  Width="500" Height="16" CornerRadius="8" Background="#009EDF">
+                <Border Width="0" CornerRadius="8" x:Name="borderProgress" HorizontalAlignment="Left">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0.7" EndPoint="1,0.5">
+                            <GradientStop Color="#97DF96" Offset="0" />
+                            <GradientStop Color="#41BA89" Offset="0.5" />
+                            <GradientStop Color="#208D8D" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Border>
+        </StackPanel>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity" Completed="Storyboard_Completed">
+                        <DoubleAnimation BeginTime="00:00:00" Duration="00:00:03" To="500" Storyboard.TargetName="borderProgress" Storyboard.TargetProperty="Width">
+                            <DoubleAnimation.EasingFunction>
+                                <ease:BezierEase />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                        <DoubleAnimation BeginTime="00:00:02" Duration="00:00:01" To="0" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+
+    <Frame Name="frame" NavigationUIVisibility="Hidden" FontFamily="/Achievers;component/Assets/Fonts/#Krub" />
+    <Grid x:Name="Popup_Purchase" Visibility="Collapsed">
+        <Grid Background="#1B2229" Opacity="0.7" MouseDown="PopupClose_MouseDown" />
+        <shared:PopupPurchase x:Name="popup_border" Width="423" Height="458" />
+    </Grid>
+    <Grid x:Name="Popup_Delete" Visibility="Collapsed">
+        <Grid Background="#1B2229" Opacity="0.7" MouseDown="PopupClose_MouseDown" />
+        <shared:PopupDelete x:Name="border_delete" Width="423" Height="458" />
+    </Grid>
+    <Grid x:Name="Popup_Delete_Favorite" Visibility="Collapsed">
+        <Grid Background="#1B2229" Opacity="0.7" MouseDown="PopupClose_MouseDown" />
+        <shared:PopupDeleteFavorite x:Name="border_delete_favorite" Width="423" Height="458" />
+    </Grid>
+    <Grid x:Name="Popup_Memos" Visibility="Collapsed">
+        <Grid Background="#1B2229" Opacity="0.7" MouseDown="PopupClose_MouseDown" />
+        <shared:PopupMemos x:Name="border_memos" Width="600" Height="480" />
+    </Grid>
+    <Grid x:Name="Popup_QuitGame" Visibility="Collapsed">
+        <Grid Background="#1B2229" Opacity="0.7" MouseDown="PopupClose_MouseDown" />
+        <shared:PopupQuitGame x:Name="border_quitgame" Width="423" Height="458" />
+    </Grid>
+    <Grid x:Name="Popup_Result" Visibility="Hidden" IsHitTestVisible="False">
+        <Grid Background="#B31B2229" MouseDown="PopupResult_MouseDown" />
+        <shared:ResultPopup x:Name="border_Result" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
+    <Grid>
+        <Grid x:Name="gridWordDetail"
+              Visibility="Collapsed"
+              Grid.RowSpan="2" HorizontalAlignment="Stretch"
+              Background="#232D38" Opacity=".3"></Grid>
+        <tab:WordCardDetail x:Name="wordDetail" Visibility="Collapsed">
+            <!--<tab:WordCardDetail.RenderTransform>
+                <TranslateTransform Y="1100" />
+            </tab:WordCardDetail.RenderTransform>-->
+        </tab:WordCardDetail>
+    </Grid>
+</Grid>

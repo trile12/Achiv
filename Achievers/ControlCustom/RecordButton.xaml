@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Achievers.ControlCustom.RecordButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Achievers.ControlCustom"
+             mc:Ignorable="d"
+             Tag="inactive"
+             d:DesignHeight="200" d:DesignWidth="200">
+    <UserControl.Resources>
+        <Storyboard x:Key="storyBoard" Completed="OnAnimatedCompleted">
+            <DoubleAnimation
+                Storyboard.TargetName="part1"
+                Storyboard.TargetProperty="Height"
+                To="168" BeginTime="0:0:0.1" Duration="0:0:0.5" />
+            <DoubleAnimation
+                Storyboard.TargetName="part1"
+                Storyboard.TargetProperty="Width"
+                To="168" BeginTime="0:0:0.1" Duration="0:0:0.5" />
+            <DoubleAnimation
+                Storyboard.TargetName="part1"
+                Storyboard.TargetProperty="Height"
+                To="132" BeginTime="0:0:0.6" Duration="0:0:0.5" />
+            <DoubleAnimation
+                Storyboard.TargetName="part1"
+                Storyboard.TargetProperty="Width"
+                To="132" BeginTime="0:0:0.6" Duration="0:0:0.5" />
+
+            <DoubleAnimation
+                Storyboard.TargetName="part2"
+                Storyboard.TargetProperty="Height"
+                To="200" BeginTime="0:0:0" Duration="0:0:0.7" />
+            <DoubleAnimation
+                Storyboard.TargetName="part2"
+                Storyboard.TargetProperty="Width"
+                To="200" BeginTime="0:0:0" Duration="0:0:0.7" />
+            <DoubleAnimation
+                Storyboard.TargetName="part2"
+                Storyboard.TargetProperty="Height"
+                To="132" BeginTime="0:0:0.7" Duration="0:0:0.7" />
+            <DoubleAnimation
+                Storyboard.TargetName="part2"
+                Storyboard.TargetProperty="Width"
+                To="132" BeginTime="0:0:0.7" Duration="0:0:0.7" />
+        </Storyboard>
+        <Style x:Key="image" TargetType="Image">
+            <Setter Property="Source" Value="/Achievers;component/Assets/Images/icon-micro.png" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=local:RecordButton}}" Value="active">
+                    <Setter Property="Source" Value="/Achievers;component/Assets/Images/icon-micro-active.png" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="200" Height="200">
+        <Ellipse x:Name="part2" Width="132" Height="132" Fill="#FFF1F0FC" />
+        <Ellipse x:Name="part1" Width="132" Height="132" Fill="#88D7D7FC" />
+        <local:BounceButton Width="200" Height="200" OnClick="OnMouseLeftButtonUp">
+            <Image Style="{StaticResource image}" />
+        </local:BounceButton>
+    </Grid>
+</UserControl>

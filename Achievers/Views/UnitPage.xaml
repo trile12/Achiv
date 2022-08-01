@@ -1,0 +1,338 @@
+﻿<Page x:Class="Achievers.Views.UnitPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Achievers.ViewModels"
+             xmlns:local="clr-namespace:Achievers.Views" xmlns:shared="clr-namespace:Achievers.Views.Shared" xmlns:custom="clr-namespace:Achievers.ControlCustom" xmlns:converter="clr-namespace:Achievers.Converters"
+             mc:Ignorable="d" Loaded="OnLoaded" FontFamily="/Achievers;component/Assets/Fonts/#Krub"
+             d:DesignHeight="800" d:DesignWidth="1920">
+    <Page.Resources>
+        <DropShadowEffect x:Key="dropShadow" ShadowDepth="1" Color="#C5D2E0" Opacity="1" BlurRadius="10" Direction="700" />
+        <Style x:Key="menuStyle" TargetType="Border">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Height" Value="42" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="CornerRadius" Value="24" />
+            <Setter Property="Padding" Value="8,16,8,16" />
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0268D4" />
+                </Trigger>
+            </Style.Triggers>-->
+        </Style>
+    </Page.Resources>
+    <Grid x:Name="img_blue_bg">
+        <!--Background="#F6FAFE"-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--<Grid.Background>
+            <ImageBrush x:Name="img_blue_bg" />
+        </Grid.Background>-->
+
+        <!--Header-->
+        <Border VerticalAlignment="Top" Panel.ZIndex="20"
+                Background="#FFFFFF" Effect="{StaticResource dropShadow}" CornerRadius="0,0,35,35" Height="64">
+            <Grid Background="Transparent">
+                <Grid.Resources>
+                    <converter:CompareTwoValuesConverter x:Key="compareTwoValuesConverter" />
+                    <Style x:Key="tabTextStyle" TargetType="TextBlock">
+                        <Setter Property="Margin" Value="10 0 0 0" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Foreground" Value="#738498" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="TextAlignment" Value="Center" />
+                        <Setter Property="Opacity" Value="1" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="500*" />
+                    <ColumnDefinition Width="220" />
+                </Grid.ColumnDefinitions>
+
+                <Image Stretch="Uniform" Height="48" Grid.Column="0" Margin="64,0,0,0" HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Source="/Achievers;component/Assets/Images/Artboard.png" />
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Name="animatedBorder" Grid.Column="1"
+                                Background="#EFFAFC"
+                                Grid.Row="1" VerticalAlignment="Top" Margin="0,11,0,0" Style="{StaticResource menuStyle}">
+                        <Border.RenderTransform>
+                            <TranslateTransform Y="0" />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Grid Grid.Column="1" Cursor="Hand"
+                          MouseLeftButtonDown="Tab_MouseLeftButtonDown"
+                          Tag="{x:Static viewModels:TopicTabView.UNIT}">
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Height="20"
+                       VerticalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-1.png" />
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-1-blue.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="Unit Review" VerticalAlignment="Center" FontSize="16" FontWeight="Medium">
+                                <TextBlock.Style>
+                                    <Style BasedOn="{StaticResource tabTextStyle}" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <!--<Setter Property="Opacity" Value="1" />-->
+                                                <Setter Property="Foreground" Value="#4FBEDB" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2" Cursor="Hand"
+                          Tag="{x:Static viewModels:TopicTabView.WORDLIST}"
+                          MouseLeftButtonDown="Tab_MouseLeftButtonDown">
+                        <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Height="20"
+                       VerticalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-2.png" />
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-2-hv.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Grid.Column="2" Text="Full Word List" FontSize="16" FontWeight="Medium">
+                                <TextBlock.Style>
+                                    <Style BasedOn="{StaticResource tabTextStyle}" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <!--<Setter Property="Opacity" Value="1" />-->
+                                                <Setter Property="Foreground" Value="#4E4CD4" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="3" Cursor="Hand" Tag="{x:Static viewModels:TopicTabView.FAVORITE}"
+                                MouseLeftButtonDown="Tab_MouseLeftButtonDown">
+                        <StackPanel Grid.Column="3" Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+
+                                VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Height="20"
+                       VerticalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-3.png" />
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-3-hv.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Grid.Column="4" Text="Favorites" FontSize="16" FontWeight="Medium">
+                                <TextBlock.Style>
+                                    <Style BasedOn="{StaticResource tabTextStyle}" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <!--<Setter Property="Opacity" Value="1" />-->
+                                                <Setter Property="Foreground" Value="#C93497" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="4" Cursor="Hand" Tag="{x:Static viewModels:TopicTabView.MEMOS}"
+                                MouseLeftButtonDown="Tab_MouseLeftButtonDown">
+                        <StackPanel Grid.Column="4" Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                            <Image Stretch="Uniform" Height="20"
+                       VerticalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-4.png" />
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Source" Value="/Achievers;component/Assets/Images/ic-menu-4-hv.png" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Grid.Column="3" Text="Memos" FontSize="16" FontWeight="Medium">
+                                <TextBlock.Style>
+                                    <Style BasedOn="{StaticResource tabTextStyle}" TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource compareTwoValuesConverter}">
+                                                        <Binding Path="CurrentTab" />
+                                                        <Binding Path="Tag" RelativeSource="{RelativeSource AncestorType=Grid}" />
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <!--<Setter Property="Opacity" Value="1" />-->
+                                                <Setter Property="Foreground" Value="#E0AC31" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--<Border Grid.Column="1" Grid.ColumnSpan="4" Height="2"  Background="#F6FAFE" VerticalAlignment="Bottom" />-->
+                    <Border Name="animatedBar"  Height="3" Grid.Column="1" CornerRadius="3,3,0,0"
+                    Background="#F6FAFE" VerticalAlignment="Bottom">
+                        <Border.RenderTransform>
+                            <TranslateTransform X="0" />
+                        </Border.RenderTransform>
+                    </Border>
+                </Grid>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Grid Cursor="Hand" Width="Auto" MouseLeftButtonDown="Profile_Click">
+                        <shared:CircleProgressProfile StartColor="#4E4CD4"
+                                                         EndColor="#A3A2EB "
+                    IsGood="True" VerticalAlignment="Center"
+                    Percent="{Binding TotalProgress}" Radius="20" Margin="0,-47,0,0"
+                    HorizontalAlignment="Center" />
+                        <Image Width="30" Height="30"
+                               VerticalAlignment="Center"
+                               Source="/Achievers;component/Assets/Images/icon-logo.png" />
+                    </Grid>
+
+                    <Button Height="40" Width="40" Margin="-30,0,0,0" Visibility="Collapsed" HorizontalAlignment="Left">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Border CornerRadius="8" Background="#FFFFFF" x:Name="bd" Effect="{StaticResource dropShadow}">
+                                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                                                    <Image Height="17" HorizontalAlignment="Center" Source="/Achievers;component/Assets/Images/ic-setting.png" />
+                                                </StackPanel>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+                <custom:BounceButton Grid.Column="2" HorizontalAlignment="Right" Margin="0 0 20 0" OnClick="OnCloseApp">
+                    <Image  Height="20" Source="/Achievers;component/Assets/Images/ic-close.png" />
+                </custom:BounceButton>
+            </Grid>
+        </Border>
+
+        <ScrollViewer x:Name="MainScroll"  Margin="0,0,0,0" Visibility="Visible"
+                      Grid.Row="1" HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Auto">
+            <ScrollViewer.Resources>
+                <ResourceDictionary Source="/Achievers;component/Themes/ScrollViewCustom.xaml" />
+            </ScrollViewer.Resources>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Content-->
+                <Frame Margin="0,0,0,0" Panel.ZIndex="0" Grid.Column="1"
+                       Name="frame" NavigationUIVisibility="Hidden" />
+
+                <Grid Grid.ColumnSpan="3" VerticalAlignment="Bottom" x:Name="grid_footer"
+                      Height="64"
+                      Background="#232687"
+                      Panel.ZIndex="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Image Margin="64,0,0,0" Height="40"  Stretch="Uniform" Source="/Achievers;component/Assets/Images/logo-dtp.png" />
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Foreground="#FFFFFF" Margin="0,0,29,0" FontSize="12"
+                                    Text="© 2021 DTP Education Solutions" />
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

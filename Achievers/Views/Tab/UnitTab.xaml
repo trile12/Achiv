@@ -1,0 +1,284 @@
+﻿<Page x:Class="Achievers.Views.Tab.UnitTab"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Achievers.Views.Tab"
+      xmlns:shared="clr-namespace:Achievers.Views.Shared"
+      xmlns:converters="clr-namespace:Achievers.Converters"
+      xmlns:custom="clr-namespace:Achievers.ControlCustom"
+      mc:Ignorable="d" Loaded="Page_Loaded" x:Name="unitControl"
+      FontFamily="/Achievers;component/Assets/Fonts/#Krub"
+      Background="Transparent">
+    <Page.Resources>
+        <DropShadowEffect x:Key="dropShadow" ShadowDepth="1"
+                          Color="#000000" Opacity=".2"
+                          BlurRadius="20" Direction="700" />
+        <converters:WidthScaleConverter x:Key="widthScaleConverter" />
+        <converters:HideBooleanConverter x:Key="hideBooleanConverter" />
+        <converters:HideLockedButtonConverter x:Key="hideLockedButtonConverter" />
+        <Style x:Key="textDefault" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Regular" />
+            <Setter Property="Foreground" Value="#374352" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1000" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--Left Side-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="#526375" Margin="10,28,0,0" FontWeight="Medium"
+                           FontSize="28" VerticalAlignment="Center"
+                           Text="Let's start your journey!" />
+            <Grid Grid.Row="1" Margin="0,7,0,80">
+                <ItemsControl ItemsSource="{Binding LstUnit}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <shared:CardItem
+                                Margin="10 16"
+                                IsUnlock="{Binding IsUnlock}"
+                                Unit="{Binding Unit}"
+                                TitleVI="{Binding TitleVI}"
+                                Icon="{Binding Icon}"
+                                StartColor="{Binding StartColor}"
+                                EndColor="{Binding EndColor}"
+                                InactiveColor="{Binding InactiveColor}"
+                                InactiveColor2="{Binding InactiveColor2}"
+                                Title="{Binding Title}"
+                                Progress="{Binding Progress}"
+                                IsActive="{Binding IsActive}"
+                                OnClick="OnUnitClick" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+
+        <!--Right Side-->
+        <Grid Grid.Column="1" Margin="0,24,0,0" Width="338">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border x:Name="bdProfile" CornerRadius="24,0,0,24" Visibility="Collapsed"
+                    Effect="{StaticResource dropShadow}" Cursor="Hand" MouseLeftButtonDown="Profile_Click"
+                    Background="White"
+                    VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel VerticalAlignment="Top"
+                                Margin="0,16,0,0" Visibility="{Binding IsExpanded,Converter={StaticResource hideBooleanConverter}}"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                        <Button Height="30" Width="30" Margin="0,0,19,0" Click="Profile_Click" HorizontalAlignment="Right">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Image Height="14" HorizontalAlignment="Center" Source="/Achievers;component/Assets/Images/ic-left.png" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Image Width="48" Source="/Achievers;component/Assets/Images/icon-logo.png" />
+                        <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
+                            <TextBlock Text="Total progress" FontSize="14" Foreground="#232D38" />
+                            <StackPanel Orientation="Horizontal"  Margin="0,8,0,0">
+                                <Border Width="218" Height="6" CornerRadius="3" Background="#E7EFF8">
+                                    <Border Width="100" Height="6" HorizontalAlignment="Left"
+                                        CornerRadius="3">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0.7" EndPoint="1,0.5">
+                                                <GradientStop Color="#A3A2EB" Offset="0" />
+                                                <GradientStop Color="#4E4CD4" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock FontSize="14" Foreground="#738498" Margin="8,0,0,0" Text="0%" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid Visibility="{Binding IsExpanded,Converter={StaticResource hideLockedButtonConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid>
+                                <Grid.Background>
+                                    <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                        <GradientStop Color="#FFFFFF" Offset="0.0052" />
+                                        <GradientStop Color="#FF6DA7EE" Offset="0.2969" />
+                                        <GradientStop Color="#6161DF" Offset="0.6354" />
+                                        <GradientStop Color="#4542C9" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                            </Grid>
+
+                            <Image
+                                   Stretch="Uniform" HorizontalAlignment="Left"
+                                   Source="/Achievers;component/Assets/Images/left-br-1.png">
+                            </Image>
+                            <Image Stretch="Uniform" Source="/Achievers;component/Assets/Images/left-br-2.png">
+                            </Image>
+                            <Image Stretch="Uniform" Margin="0,0,0,20"
+                                   Width="96" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                   Source="/Achievers;component/Assets/Images/icon-logo.png" />
+                        </Grid>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="29,8,28,0">
+                            <TextBlock Text="Total progress" FontSize="14" FontWeight="Medium" Foreground="#232D38" />
+                            <Grid  HorizontalAlignment="Stretch"
+                                 Margin="0,8,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Border
+                                    Height="6" CornerRadius="3"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#E7EFF8">
+                                    <Border Width="180" Height="6" HorizontalAlignment="Left"
+                                        CornerRadius="3">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0.7" EndPoint="1,0.5">
+                                                <GradientStop Color="#A3A2EB" Offset="0" />
+                                                <GradientStop Color="#4E4CD4" Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock Grid.Column="1" Margin="16,0,0,0" FontSize="14"
+                                           HorizontalAlignment="Right"
+                                           Foreground="#738498" Text="60%" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1" VerticalAlignment="Top" Margin="0,0,0,180"
+                                  Visibility="{Binding IsExpanded,Converter={StaticResource hideLockedButtonConverter}}">
+                        <ScrollViewer.Resources>
+                            <ResourceDictionary Source="/Achievers;component/Themes/ScrollViewCustom.xaml" />
+                        </ScrollViewer.Resources>
+                        <StackPanel  Margin="20,0,20,20">
+                            <shared:ProfileCard Height="150" Title="Starter" StartColor="#4FBEDB" EndColor="#A5E4F2" UnitBorderColor="#F1F0FC" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 1" StartColor="#4E4CD4" EndColor="#A3A2EB" UnitBorderColor="#F1F0FC"  Title="Free time" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 2" StartColor="#C93497" EndColor="#EB96D2" UnitBorderColor="#F9EEF6" Title="School is cool" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 3" StartColor="#2964B8" EndColor="#99C5F7" UnitBorderColor="#EEF5FD"  Title="Paty time!" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 4" StartColor="#E07031" EndColor="#F2B28A" UnitBorderColor="#FCF4EE"  Title="Wonderful world" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 5" StartColor="#44B88F" EndColor="#A1E5CD" UnitBorderColor="#F2FAF7"  Title="Let's go out!" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 6" StartColor="#E8B233" EndColor="#F5D98B" UnitBorderColor="#FDF8EE"  Title="Long ago" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 7" StartColor="#D44942" EndColor="#ED9691" UnitBorderColor="#FCF2F2"  Title="Wild world" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 8" StartColor="#738498" EndColor="#C5D2E0" UnitBorderColor="#F6FAFE"  Title="Getting away" Margin="0,16,0,0" />
+                            <shared:ProfileCard Height="150" Unit="Unit 9" StartColor="#4E4CD4" EndColor="#A3A2EB" UnitBorderColor="#F1F0FC"  Title="Digital world" Margin="0,16,0,0" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" CornerRadius="24" Width="338" Margin="0,0,10,84" Padding="24 80" Background="#F1F0FC">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding LstReview}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <TextBlock Text="Review Activities" FontSize="24" FontWeight="SemiBold" Foreground="#374352" TextAlignment="Center" />
+                    <TextBlock Text="Choose a Unit to start your Review Activities" Margin="0 8 0 0" Style="{StaticResource textDefault}" />
+                    <Image Margin="0 16 0 0" Source="/Achievers;component/Assets/Images/empty-state.png" />
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="bdUnit" Grid.Row="2" CornerRadius="24" Margin="0,0,10,84"
+                        Effect="{StaticResource dropShadow}">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding LstReview}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Border.Background>
+                    <ImageBrush Stretch="UniformToFill" ImageSource="/Achievers;component/Assets/Images/unit-panel.png" />
+                </Border.Background>
+
+                <StackPanel>
+                    <StackPanel Margin="28,39,0,0">
+                        <TextBlock Text="{Binding Unit.Unit}"
+                                   FontSize="14" FontWeight="Regular"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Unit.Title}"
+                                   FontSize="24" FontWeight="Medium"
+                                   Foreground="White" />
+                    </StackPanel>
+
+                    <Border Name="boxHint" Background="#EEF5FD"  Margin="24,37,24,0"
+                            CornerRadius="12" Effect="{StaticResource dropShadow}">
+                        <Grid>
+                            <DockPanel Margin="16,15,0,15" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Image DockPanel.Dock="Left" Width="16" Margin="0,2,0,0" VerticalAlignment="Top"
+                                       Source="/Achievers;component/Assets/Images/icon-i.png" />
+                                <Grid>
+                                    <TextBlock Margin="8,0,20,0"
+                                           TextWrapping="Wrap" FontSize="14" FontWeight="Medium" Foreground="#374352"
+                                           Text="Complete the first 3 Review activities with 70% correct to unlock the 4th Activity." />
+                                </Grid>
+                            </DockPanel>
+                            <custom:BounceButton Width="24" Height="24" Margin="0 -12 7 0" CornerRadius="12" Background="White" HorizontalAlignment="Right" VerticalAlignment="Top" OnClick="OnBoxHintClose">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="2" ShadowDepth="2" Direction="315" Color="#738498" Opacity="0.25" />
+                                </Border.Effect>
+                                <Image Width="10" Height="10" Source="/Achievers;component/Assets/Images/ic-close.png" />
+                            </custom:BounceButton>
+                        </Grid>
+                    </Border>
+
+                    <ItemsControl Margin="0 16 0 0" ItemsSource="{Binding LstReview}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <shared:CardUnitItem Cursor="Hand" MouseLeftButtonUp="Review_Click"
+                                    Margin="24,16,24,0"
+                                    Title="{Binding Name}"
+                                    Percentage="{Binding Progress}"
+                                    IsLocked="{Binding IsLocked}"
+                                    Index="{Binding Index}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

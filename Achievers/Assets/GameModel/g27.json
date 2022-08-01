@@ -1,0 +1,74 @@
+{
+  "id": 27,
+  "name": "Review 3",
+  "image_url": "",
+  "activity_type": 3,
+  "grade_unit_id": 7,
+  "total_question": 6,
+  "min_progress": 0,
+  "deleted": 0,
+  "next_unit_review": {
+    "id": 28,
+    "name": "Review 4"
+  },
+  "instruction": "Listen to the words and repeat.",
+  "instruction_vi": "Nghe và đọc theo.",
+  "sub_instruction": "Listen and choose the correct photo.",
+  "sub_instruction_vi": "Nghe và chọn ảnh tương ứng.",
+  "questions": [
+    {
+      "answers": [
+        {
+          "text": "blanket",
+          "image": "/U6/blanket.jpg",
+          "audio": "/audio/U6/blanket.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "helmet",
+          "image": "/U6/helmet.jpg",
+          "audio": "/audio/U6/helmet.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "funeral",
+          "image": "/U6/funeral.jpg",
+          "audio": "/audio/U6/funeral.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "vase",
+          "image": "/U6/vase.jpg",
+          "audio": "/audio/U6/vase.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "plate",
+          "image": "/U6/plate.jpg",
+          "audio": "/audio/U6/plate.wav"
+        }
+      ]
+    },
+    {
+      "answers": [
+        {
+          "text": "mud",
+          "image": "/U6/mud.jpg",
+          "audio": "/audio/U6/mud.wav"
+        }
+      ]
+    }
+  ]
+}

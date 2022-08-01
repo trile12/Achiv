@@ -1,0 +1,80 @@
+﻿<UserControl
+    x:Class="Achievers.Views.Shared.CircleProgressBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Achievers.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Shared"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="userControl"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
+    FontFamily="/Achievers;component/Assets/Fonts/#Krub"
+    Loaded="userControl_Loaded"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:PercentageConverter x:Key="percentageConverter" />
+    </UserControl.Resources>
+    <Grid Cursor="Hand">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:CircleProgress
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            EndColor="#E7EFF8"
+            Percentage="100"
+            Radius="25"
+            StartColor="#E7EFF8"
+            StrokeThickness="6" />
+
+        <local:CircleProgress
+            x:Name="progressBar"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            EndColor="{Binding EndColor, ElementName=userControl}"
+            Percentage="{Binding Percentage, ElementName=userControl}"
+            Radius="25"
+            StartColor="{Binding StartColor, ElementName=userControl}"
+            StrokeThickness="6" />
+        <TextBlock
+            Margin="6,12,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="12"
+            FontStyle="Normal"
+            FontWeight="Medium"
+            Foreground="#526375"
+            Text="{Binding Percentage, ElementName=progressBar, Converter={StaticResource percentageConverter}}" />
+        <TextBlock
+            x:Name="txtTitle"
+            Grid.Row="1"
+            Margin="12,0,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontSize="12"
+            FontWeight="Medium"
+            Foreground="#738498"
+            Text="{Binding Title, ElementName=userControl}" />
+        <Image
+            Width="20"
+            Margin="5,8,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="../../Assets/Images/ic-lock-gray.png">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=userControl, Path=IsLocked}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+    </Grid>
+</UserControl>

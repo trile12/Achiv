@@ -1,0 +1,264 @@
+﻿<Page
+    x:Class="Achievers.Views.ReviewResultPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controlcustom="clr-namespace:Achievers.ControlCustom"
+    xmlns:converters="clr-namespace:Achievers.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Achievers.Views.Game"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shared="clr-namespace:Achievers.Views.Shared"
+    xmlns:viewModel="clr-namespace:Achievers.ViewModels"
+    x:Name="pageResult"
+    d:DataContext="{d:DesignInstance viewModel:ResultPageViewModel}"
+    FontFamily="/Achievers;component/Assets/Fonts/#Krub"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converters:CheckResultProgress x:Key="checkResultProgress" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanToVisibilityReverseConverter x:Key="BooleanToVisibilityReverseConverter" />
+        <converters:ResultDescriptionConverter x:Key="ResultDescriptionConverter" />
+        <Style x:Key="textDescription" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0,12,0,48" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="textButton" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="textTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#D44942" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsGoodJob}" Value="True">
+                    <Setter Property="Foreground" Value="{Binding MainEndColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="circleProgress" TargetType="shared:CircleProgressResultGame">
+            <Setter Property="StartColor" Value="#ED9691" />
+            <Setter Property="EndColor" Value="#D44942" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsGoodJob}" Value="True">
+                    <Setter Property="StartColor" Value="{Binding MainStartColor}" />
+                    <Setter Property="EndColor" Value="{Binding MainEndColor}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid Width="630" Height="548">
+        <Image Source="/Achievers;component/Assets/Images/result-board.png" />
+        <StackPanel VerticalAlignment="Top">
+            <Grid
+                Width="158"
+                Height="158"
+                Margin="-17,30,0,51">
+                <Image
+                    Margin="-25,-12,-25,-32"
+                    Source="{Binding ImageStar}"
+                    Visibility="{Binding IsGoodJob, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="104" CenterY="90" ScaleX="0.6" ScaleY="0.6" />
+                            <RotateTransform CenterX="104" CenterY="90" />
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="(RenderTransform).Children[0].(ScaleTransform.ScaleX)"
+                                        To="1"
+                                        Duration="0:0:1" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="(RenderTransform).Children[0].(ScaleTransform.ScaleY)"
+                                        To="1"
+                                        Duration="0:0:1" />
+                                    <DoubleAnimation
+                                        Storyboard.TargetProperty="(RenderTransform).Children[1].(RotateTransform.Angle)"
+                                        To="360"
+                                        Duration="0:0:1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+                <Ellipse
+                    Width="140"
+                    Height="140"
+                    Fill="White" />
+                <shared:CircleProgressResultGame
+                    HorizontalAlignment="Center"
+                    IsGood="True"
+                    Percent="{Binding Percent}"
+                    Style="{StaticResource circleProgress}" />
+                <Image
+                    Width="70"
+                    Height="70"
+                    Source="{Binding ImageIcon}" />
+            </Grid>
+
+            <TextBlock Style="{StaticResource textTitle}" Text="{Binding Title}" />
+
+            <controlcustom:BindableTextBlock InlineList="{Binding Description, Converter={StaticResource ResultDescriptionConverter}}" Style="{StaticResource textDescription}" />
+
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Visibility="{Binding IsFinish, Converter={StaticResource BooleanToVisibilityReverseConverter}}">
+                <controlcustom:BounceButton
+                    Width="163"
+                    Height="44"
+                    CornerRadius="16"
+                    OnClick="GoBack_Click">
+                    <TextBlock Text="Go Back">
+                        <TextBlock.Style>
+                            <Style BasedOn="{StaticResource textButton}" TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#D44942" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsGoodJob}" Value="True">
+                                        <Setter Property="Foreground" Value="{Binding MainEndColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                            <GradientStop Offset="0" Color="{Binding SubStartColor}" />
+                            <GradientStop Offset="1" Color="{Binding SubEndColor}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </controlcustom:BounceButton>
+                <controlcustom:BounceButton
+                    Width="163"
+                    Height="44"
+                    Margin="16,0,0,0"
+                    CornerRadius="16"
+                    OnClick="NextUnit_Click">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsGoodJob}" Value="True" />
+                                        <Condition Binding="{Binding IsShowNextReview}" Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock
+                        Foreground="#FFFFFF"
+                        Style="{StaticResource textButton}"
+                        Text="{Binding NextReviewName}" />
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                            <GradientStop Offset="0" Color="{Binding MainStartColor}" />
+                            <GradientStop Offset="1" Color="{Binding MainEndColor}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </controlcustom:BounceButton>
+                <controlcustom:BounceButton
+                    Width="163"
+                    Height="44"
+                    Margin="16,0,0,0"
+                    CornerRadius="16"
+                    OnClick="TryAgain_Click"
+                    Visibility="{Binding IsGoodJob, Converter={StaticResource BooleanToVisibilityReverseConverter}}">
+                    <TextBlock
+                        Foreground="#FFFFFF"
+                        Style="{StaticResource textButton}"
+                        Text="Try again" />
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                            <GradientStop Offset="0" Color="#ED9691" />
+                            <GradientStop Offset="1" Color="#D44942" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </controlcustom:BounceButton>
+            </StackPanel>
+
+            <StackPanel Visibility="{Binding IsFinish, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <controlcustom:BounceButton
+                    Width="163"
+                    Height="44"
+                    CornerRadius="16"
+                    OnClick="GoBack_Click">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Foreground="White"
+                            Style="{StaticResource textButton}"
+                            Text="Finish" />
+                    </StackPanel>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                            <GradientStop Offset="0" Color="{Binding MainStartColor}" />
+                            <GradientStop Offset="1" Color="{Binding MainEndColor}" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </controlcustom:BounceButton>
+            </StackPanel>
+
+            <controlcustom:BounceButton OnClick="Result_Click" Visibility="{Binding IsSeeResult, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <StackPanel
+                    Margin="0,34,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Text="See result">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#D44942" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsGoodJob}" Value="True">
+                                        <Setter Property="Foreground" Value="{Binding MainEndColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Rectangle
+                        Width="20"
+                        Height="20"
+                        Margin="6,0,0,0">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Setter Property="Fill" Value="#D44942" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsGoodJob}" Value="True">
+                                        <Setter Property="Fill" Value="{Binding MainEndColor}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                        <Rectangle.OpacityMask>
+                            <ImageBrush
+                                ImageSource="/Achievers;component/Assets/Images/ic-right-red.png"
+                                Stretch="Uniform"
+                                Viewport="5,1.5,9,17"
+                                ViewportUnits="Absolute" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </controlcustom:BounceButton>
+        </StackPanel>
+    </Grid>
+</Page>
